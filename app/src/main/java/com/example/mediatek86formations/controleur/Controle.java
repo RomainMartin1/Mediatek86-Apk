@@ -1,5 +1,6 @@
 package com.example.mediatek86formations.controleur;
 
+import android.util.Log;
 import com.example.mediatek86formations.modele.AccesDistant;
 import com.example.mediatek86formations.modele.Formation;
 
@@ -9,6 +10,7 @@ public class Controle {
 
     private static Controle instance = null ;
     private ArrayList<Formation> lesFormations = new ArrayList<>();
+    private ArrayList<Formation> lesFormationsCopie = new ArrayList<>();
     private Formation formation = null;
 
     /**
@@ -57,9 +59,19 @@ public class Controle {
         }
         return lesFormationsFiltre;
     }
-
+    /**
+     * Setter de la liste de formations.
+     * @param lesFormations
+     */
     public void setLesFormations(ArrayList<Formation> lesFormations) {
         this.lesFormations = lesFormations;
     }
 
+    public ArrayList<Formation> getLesFormationsCopie() {
+        return lesFormationsCopie;
+    }
+
+    public void setLesFormationsCopie(ArrayList<Formation> lesFormationsFiltered) {
+        this.lesFormationsCopie = lesFormationsFiltered;
+    }
 }
