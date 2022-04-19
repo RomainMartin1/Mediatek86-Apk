@@ -2,6 +2,7 @@ package com.example.mediatek86formations.vue;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class FormationListAdapter extends BaseAdapter {
      */
     public FormationListAdapter(ArrayList<Formation> lesFormations, Context context) {
         this.lesFormations = lesFormations;
-        this.controle = Controle.getInstance();
+        this.controle = Controle.getInstance(context);
         this.context = context;
         this.inflater = LayoutInflater.from(context);
     }
@@ -83,6 +84,35 @@ public class FormationListAdapter extends BaseAdapter {
         }else{
             viewProperties = (ViewProperties)view.getTag();
         }
+
+        if (controle.isFavori(lesFormations.get(i).getId())) {
+            viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
+        } else {
+            viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
+        }
+
+        System.out.println("BEFORE");
+
+        //Gestion du clic sur le bouton favori
+        viewProperties.btnListFavori.setTag(i);
+        viewProperties.btnListFavori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = (int)v.getTag();
+                if(controle.isFavori(lesFormations.get(position).getId()))
+                {
+                    viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
+                    controle.removeFavori(lesFormations.get(position).getId());
+                    notifyDataSetChanged();
+                }
+                else{
+                    viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
+                    controle.addFavori(lesFormations.get(position));
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
         viewProperties.txtListeTitle.setText(lesFormations.get(i).getTitle());
         viewProperties.txtListPublishedAt.setText(lesFormations.get(i).getPublishedAtToString());
         viewProperties.txtListeTitle.setTag(i);
