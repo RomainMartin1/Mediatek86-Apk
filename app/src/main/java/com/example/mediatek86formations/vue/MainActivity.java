@@ -8,9 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.mediatek86formations.R;
+import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 
+/**
+ * Vue lors du démarrage de l'application.
+ * @author Romain
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -38,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Procédure événementielle sur le clic d'une image du menu.
-     * @param btn
-     * @param classe
+     * @param btn btnFormations ou btnFavoris.
+     * @param classe activité à ouvrir.
      * @param isFavori si true : ouvre les favoris, si false : ouvre toute la liste de formations.
      */
     private void ecouteMenu(ImageButton btn, final Class classe, boolean isFavori){

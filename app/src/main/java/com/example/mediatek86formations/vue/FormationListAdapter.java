@@ -2,31 +2,40 @@ package com.example.mediatek86formations.vue;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.example.mediatek86formations.R;
+import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 import com.example.mediatek86formations.modele.Formation;
-import com.example.mediatek86formations.outils.MesOutils;
 
 import java.util.ArrayList;
 
+/**
+ * Vue correspondant à l'affichage de la liste des Formations.
+ */
 public class FormationListAdapter extends BaseAdapter {
-
+    /**
+     * Tableau de Formation.
+     */
     private ArrayList<Formation> lesFormations;
     private LayoutInflater inflater;
+    /**
+     * Contrôleur.
+     */
     private Controle controle;
+    /**
+     * Contexte.
+     */
     private Context context;
 
     /**
-     *
-     * @param lesFormations
-     * @param context
+     * Constructeur de la classe FormationListAdapter.
+     * @param lesFormations tableau de Formation.
+     * @param context contexte.
      */
     public FormationListAdapter(ArrayList<Formation> lesFormations, Context context) {
         this.lesFormations = lesFormations;
@@ -36,8 +45,8 @@ public class FormationListAdapter extends BaseAdapter {
     }
 
     /**
-     *
-     * @return nombre de formations
+     * Calcule la taille du tableau de formations.
+     * @return le nombre de formations.
      */
     @Override
     public int getCount() {
@@ -45,9 +54,10 @@ public class FormationListAdapter extends BaseAdapter {
     }
 
     /**
-     *
-     * @param i position de l'item
-     * @return valeur à cette position
+     * Récupère une Formation se trouvant dans le tableau de Formations à l'indice i passé en
+     * paramètre.
+     * @param i position de l'item.
+     * @return valeur à cette position.
      */
     @Override
     public Object getItem(int i) {
@@ -55,7 +65,7 @@ public class FormationListAdapter extends BaseAdapter {
     }
 
     /**
-     *
+     * Récupère un indice passé en paramètre.
      * @param i position de l'item
      * @return id à cette position
      */
@@ -65,11 +75,11 @@ public class FormationListAdapter extends BaseAdapter {
     }
 
     /**
-     * Construction de la ligne
-     * @param i
-     * @param view
-     * @param viewGroup
-     * @return
+     * Construction de la ligne.
+     * @param i int.
+     * @param view View.
+     * @param viewGroup ViewGroup.
+     * @return la vue.
      */
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -118,6 +128,7 @@ public class FormationListAdapter extends BaseAdapter {
                     int position = (int) v.getTag();
                     controle.removeFavori(lesFormations.get(position).getId());
                     lesFormations.remove(lesFormations.get(position));
+                    controle.setLesFormationsFavorites(controle.getFavoris());
                     notifyDataSetChanged();
                 }
             });
@@ -143,8 +154,8 @@ public class FormationListAdapter extends BaseAdapter {
     }
 
     /**
-     * Ouvre la page du détail de la formation
-     * @param v
+     * Ouvre la page du détail de la formation.
+     * @param v View.
      */
     private void ouvrirUneFormationActivity(View v){
         int indice = (int)v.getTag();
@@ -154,7 +165,7 @@ public class FormationListAdapter extends BaseAdapter {
     }
 
     /**
-     * Propriétés de la ligne
+     * Propriétés de la ligne.
      */
     private class ViewProperties{
         ImageButton btnListFavori;

@@ -9,17 +9,29 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.mediatek86formations.R;
+import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 import com.example.mediatek86formations.modele.Formation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Classe FormationsActivity. Vue correspondant à l'affichage des formations.
+ * @author Romain
+ */
 public class FormationsActivity extends AppCompatActivity {
-
+    /**
+     * Contrôleur.
+     */
     private Controle controle;
+    /**
+     * Bouton "filtrer".
+     */
     private Button btnFiltrer;
+    /**
+     * Texte dans la zone de saisie du filtre.
+     */
     private EditText txtFiltre;
 
     @Override
@@ -33,7 +45,6 @@ public class FormationsActivity extends AppCompatActivity {
      * Initialisations.
      */
     private void init(){
-        System.out.println("##################### INIT");
         controle = Controle.getInstance(FormationsActivity.this);
         btnFiltrer = (Button) findViewById(R.id.btnFiltrer);
         txtFiltre = (EditText) findViewById(R.id.txtFiltre);
@@ -47,7 +58,7 @@ public class FormationsActivity extends AppCompatActivity {
     }
 
     /**
-     * création de la liste adapter
+     * Création de la liste adapter.
      */
     private void creerListe(){
         ArrayList<Formation> lesFormations = controle.getLesFormations();

@@ -1,7 +1,7 @@
 package com.example.mediatek86formations.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.mediatek86formations.R;
+import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 import com.example.mediatek86formations.modele.Formation;
 import com.example.mediatek86formations.outils.MesOutils;
@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Vue permettant l'affichage des détails d'une formation.
+ */
 public class UneFormationActivity extends AppCompatActivity {
 
     private ImageButton btnPicture;
@@ -26,7 +29,7 @@ public class UneFormationActivity extends AppCompatActivity {
     }
 
     /**
-     * Remplissage des objets graphiques
+     * Remplissage des objets graphiques.
      */
     private void init(){
         Controle controle = Controle.getInstance(UneFormationActivity.this);
@@ -45,7 +48,7 @@ public class UneFormationActivity extends AppCompatActivity {
     }
 
     /**
-     * Procédure événementielle sur le clic du bouton btnPicture
+     * Procédure événementielle sur le clic du bouton btnPicture.
      */
     private void ecouteBtnPicture(){
         btnPicture.setOnClickListener(new View.OnClickListener() {

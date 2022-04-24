@@ -14,20 +14,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Accès à la base de données distante.
+ * @author Romain
+ */
 public class AccesDistant implements AsyncResponse {
-
+    /**
+     * Adresse du serveur.
+     */
     private static final String SERVERADDR = "http://192.168.1.40/rest_mediatek86formations/";
+    /**
+     * Contrôleur de l'application.
+     */
     private Controle controle;
 
     /**
-     * constructeur
+     * Constructeur.
      */
     public AccesDistant(){
         controle = Controle.getInstance(null);
     }
 
     /**
-     * retour du serveur distant
+     * Retour du serveur distant.
      * @param output
      */
     @Override
@@ -64,7 +73,7 @@ public class AccesDistant implements AsyncResponse {
     }
 
     /**
-     * envoi de données vers le serveur distant
+     * Envoi de données vers le serveur distant.
      * @param operation
      * @param lesDonneesJSON
      */

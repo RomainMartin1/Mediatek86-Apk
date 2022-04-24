@@ -7,14 +7,17 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.example.mediatek86formations.R;
+import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 import com.example.mediatek86formations.modele.Formation;
 
+/**
+ * Vue correspondant à l'affichage d'une vidéo.
+ */
 public class VideoActivity extends AppCompatActivity {
 
     /**
-     * objet d'affichage de la vidéo
+     * Objet d'affichage de la vidéo.
      */
     WebView wbvYoutube;
 
@@ -26,7 +29,7 @@ public class VideoActivity extends AppCompatActivity {
     }
 
     /**
-     * Affichage  de la vidéo
+     * Affichage  de la vidéo.
      */
     private void init(){
         Controle controle = Controle.getInstance(VideoActivity.this);

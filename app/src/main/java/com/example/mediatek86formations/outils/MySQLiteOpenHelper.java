@@ -1,9 +1,7 @@
 package com.example.mediatek86formations.outils;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
@@ -13,7 +11,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 			+ "id INTEGER PRIMARY KEY);";
 
     /**
-     * Construction de l'accès à une base de données locale
+     * Construction de l'accès à une base de données locale.
      * @param context
      * @param name
      * @param version
@@ -24,8 +22,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 
     /**
-     * méthode redéfinie appelée automatiquement par le constructeur
-     * uniquement si celui-ci repère que la base n'existe pas encore
+     * Méthode redéfinie appelée automatiquement par le constructeur
+     * uniquement si celui-ci repère que la base n'existe pas encore.
      * @param db
      */
 	@Override
@@ -35,7 +33,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 
     /**
-     * méthode redéfinie appelée automatiquement s'il y a changement de version de la base
+     * Méthode redéfinie appelée automatiquement s'il y a changement de version de la base.
      * @param db
      * @param oldVersion
      * @param newVersion

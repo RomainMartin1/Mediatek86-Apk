@@ -13,10 +13,10 @@ import java.util.Date;
 public interface MesOutils {
 
     /**
-     * reçoit une date au format String et la convertit au format Date
-     * @param uneDate au format String
-     * @param expectedPattern pour formater la date
-     * @return date convertie au format Date
+     * Reçoit une date au format String et la convertit au format Date.
+     * @param uneDate au format String.
+     * @param expectedPattern pour formater la date.
+     * @return date convertie au format Date.
      */
     public static Date convertStringToDate(String uneDate, String expectedPattern){
         SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
@@ -29,9 +29,9 @@ public interface MesOutils {
     }
 
     /**
-     * reçoit une date au format String et la convertit au format Date avec pattern précis
-     * @param uneDate au format String
-     * @return date convertie au format Date
+     * Reçoit une date au format String et la convertit au format Date avec pattern précis.
+     * @param uneDate au format String.
+     * @return date convertie au format Date.
      */
     public static Date convertStringToDate(String uneDate){
         String expectedPattern = "EEE MMM dd hh:mm:ss 'GMT+00:00' yyyy";
@@ -39,9 +39,9 @@ public interface MesOutils {
     }
 
     /**
-     * reçoit une date au format Date et la convertit au format String
-     * @param uneDate au format Date
-     * @return date convertie au format String
+     * Reçoit une date au format Date et la convertit au format String.
+     * @param uneDate au format Date.
+     * @return date convertie au format String.
      */
     public static String convertDateToString(Date uneDate){
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
@@ -49,9 +49,9 @@ public interface MesOutils {
     }
 
     /**
-     * Charge une imagge à partir d'une url
+     * Charge une image à partir d'une url.
      * @param img
-     * @param url
+     * @param url String. Lien de l'image.
      */
     public static void loadMapPreview (ImageButton img, String url) {
         //start a background thread for networking
@@ -72,5 +72,4 @@ public interface MesOutils {
             }
         }).start();
     }
-
 }
