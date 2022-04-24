@@ -11,6 +11,7 @@ import com.example.mediatek86formations.outils.MySQLiteOpenHelper;
 import com.example.mediatek86formations.modele.Formation;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AccesLocal {
@@ -44,5 +45,22 @@ public class AccesLocal {
         String req = "delete from FormationsFavorites where id=" + id;
         bd.execSQL(req);
         bd.close();
+    }
+
+    public ArrayList<Integer> getFavorisId() {
+        bd = accesBD.getReadableDatabase();
+        String req = "select * from FormationsFavorites";
+        ArrayList<Integer> favoris = new ArrayList<Integer>();
+        Cursor curseur = bd.rawQuery(req, null);
+        curseur.moveToFirst();
+
+        while(!curseur.isAfterLast()){
+            favoris.add(curseur.getInt(0));
+            curseur.moveToNext();
+        }
+
+        curseur.close();
+        bd.close();
+        return favoris;
     }
 }

@@ -85,33 +85,43 @@ public class FormationListAdapter extends BaseAdapter {
             viewProperties = (ViewProperties)view.getTag();
         }
 
+        //Affichage du coeur en fonction de s'il est un favori ou non
         if (controle.isFavori(lesFormations.get(i).getId())) {
             viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
         } else {
             viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
         }
 
-        System.out.println("BEFORE");
-
         //Gestion du clic sur le bouton favori
-        viewProperties.btnListFavori.setTag(i);
-        viewProperties.btnListFavori.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = (int)v.getTag();
-                if(controle.isFavori(lesFormations.get(position).getId()))
-                {
-                    viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
+        if(!controle.getFavori()) {
+            viewProperties.btnListFavori.setTag(i);
+            viewProperties.btnListFavori.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = (int) v.getTag();
+                    if (controle.isFavori(lesFormations.get(position).getId())) {
+                        viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
+                        controle.removeFavori(lesFormations.get(position).getId());
+                        notifyDataSetChanged();
+                    } else {
+                        viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
+                        controle.addFavori(lesFormations.get(position));
+                        notifyDataSetChanged();
+                    }
+                }
+            });
+        } else {
+            viewProperties.btnListFavori.setTag(i);
+            viewProperties.btnListFavori.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = (int) v.getTag();
                     controle.removeFavori(lesFormations.get(position).getId());
+                    lesFormations.remove(lesFormations.get(position));
                     notifyDataSetChanged();
                 }
-                else{
-                    viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
-                    controle.addFavori(lesFormations.get(position));
-                    notifyDataSetChanged();
-                }
-            }
-        });
+            });
+        }
 
         viewProperties.txtListeTitle.setText(lesFormations.get(i).getTitle());
         viewProperties.txtListPublishedAt.setText(lesFormations.get(i).getPublishedAtToString());

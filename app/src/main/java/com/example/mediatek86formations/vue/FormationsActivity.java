@@ -30,13 +30,17 @@ public class FormationsActivity extends AppCompatActivity {
     }
 
     /**
-     * initialisations
+     * Initialisations.
      */
     private void init(){
         controle = Controle.getInstance(FormationsActivity.this);
         btnFiltrer = (Button) findViewById(R.id.btnFiltrer);
         txtFiltre = (EditText) findViewById(R.id.txtFiltre);
-        controle.setLesFormations(controle.getLesFormationsCopie());
+        if(!controle.getFavori()) {
+            controle.setLesFormations(controle.getLesFormationsCopie());
+        } else {
+            controle.setLesFormations(controle.getFavoris());
+        }
         ecouteFiltrer();
         creerListe();
     }
