@@ -14,6 +14,7 @@ public class Controle {
     private static Controle instance = null ;
     private ArrayList<Formation> lesFormations = new ArrayList<>();
     private ArrayList<Formation> lesFormationsCopie = new ArrayList<>();
+    private ArrayList<Formation> lesFormationsFavorites = new ArrayList<>();
     private Formation formation = null;
     private static AccesLocal accesLocal;
     private boolean favori; // si vrai : on affiche que le favoris, si faux : on affiche tout
@@ -81,6 +82,14 @@ public class Controle {
         this.lesFormationsCopie = lesFormationsFiltered;
     }
 
+    public ArrayList<Formation> getLesFormationsFavorites() {
+        return lesFormationsFavorites;
+    }
+
+    public void setLesFormationsFavorites(ArrayList<Formation> lesFormationsFavorites) {
+        this.lesFormationsFavorites = lesFormationsFavorites;
+    }
+
     /**
      * Getter de favori.
      * @return si true : l'utilisateur a cliqué sur mes formations, si false : il a cliqué sur favoris.
@@ -134,7 +143,6 @@ public class Controle {
                 lesFavoris.add(formation);
             }
         }
-        System.out.println("COUCOU" + lesFavoris.size());
         return lesFavoris;
     }
 }

@@ -33,6 +33,7 @@ public class FormationsActivity extends AppCompatActivity {
      * Initialisations.
      */
     private void init(){
+        System.out.println("##################### INIT");
         controle = Controle.getInstance(FormationsActivity.this);
         btnFiltrer = (Button) findViewById(R.id.btnFiltrer);
         txtFiltre = (EditText) findViewById(R.id.txtFiltre);
@@ -69,7 +70,11 @@ public class FormationsActivity extends AppCompatActivity {
                 if(txt.length() > 0) {
                     controle.setLesFormations(controle.getLesFormationFiltre(txt));
                 } else {
-                    controle.setLesFormations(controle.getLesFormationsCopie());
+                    if(!controle.getFavori()) {
+                        controle.setLesFormations(controle.getLesFormationsCopie());
+                    } else {
+                        controle.setLesFormations(controle.getLesFormationsFavorites());
+                    }
                 }
                 creerListe();
             }
