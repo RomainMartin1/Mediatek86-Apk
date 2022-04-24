@@ -1,12 +1,10 @@
 package com.example.mediatek86formations.modele;
 
-import java.lang.Integer;
-
 /**
  * Classe correspondant à la base de données locale FormationsFavorites.
  * @author Romain
  */
-public class FormationsFavorites implements Comparable {
+public class FormationsFavorites implements Comparable<FormationsFavorites> {
     /**
      * Entier. Indice de la formation.
      */
@@ -29,7 +27,7 @@ public class FormationsFavorites implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        return id.compareTo(((FormationsFavorites)o).getId());
+    public int compareTo(FormationsFavorites formationsFavorites) {
+        return id.compareTo(formationsFavorites.getId());
     }
 }

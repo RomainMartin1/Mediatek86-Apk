@@ -6,6 +6,7 @@ import com.example.mediatek86formations.modele.AccesLocal;
 import com.example.mediatek86formations.modele.Formation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe Controle, représentant le contrôleur du modèle MVC.
@@ -17,18 +18,18 @@ public class Controle {
     /**
      * Tableau de Formation lesFormations. Evolue en fonction des filtres dessus.
      */
-    private ArrayList<Formation> lesFormations = new ArrayList<>();
+    private List<Formation> lesFormations = new ArrayList<>();
     /**
      * Tableau de Formation lesFormationsCopie. Permet de garder en permanence une copie consultable
      * de toutes les formations, sans repasser par la base de donnée à chaque fois.
      */
-    private ArrayList<Formation> lesFormationsCopie = new ArrayList<>();
+    private List<Formation> lesFormationsCopie = new ArrayList<>();
     /**
      * Tableau de Formation lesFormationsFavorites. Permet de garder en permanence une copie
      * consultable de toutes les formations favorites, sans repasser par la base de donnée à
      * chaque fois.
      */
-    private ArrayList<Formation> lesFormationsFavorites = new ArrayList<>();
+    private List<Formation> lesFormationsFavorites = new ArrayList<>();
     /**
      * Une Formation.
      */
@@ -84,7 +85,7 @@ public class Controle {
      * Getter du tableau de Formation.
      * @return le tableau de Formation.
      */
-    public ArrayList<Formation> getLesFormations() {
+    public List<Formation> getLesFormations() {
         return lesFormations;
     }
 
@@ -93,8 +94,8 @@ public class Controle {
      * @param filtre String.
      * @return un tableau contenant les formations filtrées.
      */
-    public ArrayList<Formation> getLesFormationFiltre(String filtre){
-        ArrayList<Formation> lesFormationsFiltre = new ArrayList<>();
+    public List<Formation> getLesFormationFiltre(String filtre){
+        List<Formation> lesFormationsFiltre = new ArrayList<>();
         for(Formation uneFormation : lesFormations){
             if(uneFormation.getTitle().toUpperCase().contains(filtre.toUpperCase())){
                 lesFormationsFiltre.add(uneFormation);
@@ -107,7 +108,7 @@ public class Controle {
      * Setter de la liste de formations.
      * @param lesFormations
      */
-    public void setLesFormations(ArrayList<Formation> lesFormations) {
+    public void setLesFormations(List<Formation> lesFormations) {
         this.lesFormations = lesFormations;
     }
 
@@ -117,7 +118,7 @@ public class Controle {
      * base de donnée.
      * @return le tableau  de Formation lesFormationsCopie.
      */
-    public ArrayList<Formation> getLesFormationsCopie() {
+    public List<Formation> getLesFormationsCopie() {
         return lesFormationsCopie;
     }
 
@@ -125,7 +126,7 @@ public class Controle {
      * Setter de lesFormationsCopie.
      * @param lesFormationsCopie le tableau  de Formation à affecter à lesFormationsCopie.
      */
-    public void setLesFormationsCopie(ArrayList<Formation> lesFormationsCopie) {
+    public void setLesFormationsCopie(List<Formation> lesFormationsCopie) {
         this.lesFormationsCopie = lesFormationsCopie;
     }
 
@@ -135,7 +136,7 @@ public class Controle {
      * appeler la base de donnée.
      * @return le tableau de Formation lesFormationsFavorites.
      */
-    public ArrayList<Formation> getLesFormationsFavorites() {
+    public List<Formation> getLesFormationsFavorites() {
         return lesFormationsFavorites;
     }
 
@@ -143,7 +144,7 @@ public class Controle {
      * Setter de lesFormationsFavorites.
      * @param lesFormationsFavorites le tableau  de Formation à affecter à lesFormationsCopie.
      */
-    public void setLesFormationsFavorites(ArrayList<Formation> lesFormationsFavorites) {
+    public void setLesFormationsFavorites(List<Formation> lesFormationsFavorites) {
         this.lesFormationsFavorites = lesFormationsFavorites;
     }
 
@@ -192,9 +193,9 @@ public class Controle {
      * Récupère la liste de toutes les formations mise en favori.
      * @return la liste de ces formations.
      */
-    public ArrayList<Formation> getFavoris() {
-        ArrayList<Formation> lesFavoris = new ArrayList<>();
-        ArrayList<Integer> lesIdsFavoris = accesLocal.getFavorisId();
+    public List<Formation> getFavoris() {
+        List<Formation> lesFavoris = new ArrayList<>();
+        List<Integer> lesIdsFavoris = accesLocal.getFavorisId();
         for(Formation formations : lesFormations){
             if(lesIdsFavoris.contains(formations.getId())){
                 lesFavoris.add(formations);

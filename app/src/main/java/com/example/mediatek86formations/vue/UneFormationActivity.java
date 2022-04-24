@@ -51,13 +51,10 @@ public class UneFormationActivity extends AppCompatActivity {
      * Procédure événementielle sur le clic du bouton btnPicture.
      */
     private void ecouteBtnPicture(){
-        btnPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Activity activity = UneFormationActivity.this;
-                Intent intent = new Intent(activity, VideoActivity.class);
-                activity.startActivity(intent);
-            }
+        btnPicture.setOnClickListener(view -> {
+            Activity activity = UneFormationActivity.this;
+            Intent intent = new Intent(activity, VideoActivity.class);
+            activity.startActivity(intent);
         });
     }
 

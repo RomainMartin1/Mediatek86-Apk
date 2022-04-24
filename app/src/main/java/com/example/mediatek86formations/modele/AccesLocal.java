@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.mediatek86formations.outils.MySQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Accès à la base de données locale.
@@ -35,9 +36,9 @@ public class AccesLocal {
     public boolean exists(Integer id) {
         bd = accesBD.getReadableDatabase();
         Cursor curseur = bd.query("FormationsFavorites", null, "id =?", new String[]{String.valueOf(id)}, null, null, null);
-        boolean favori_existe = !curseur.isAfterLast();
+        boolean favoriExiste = !curseur.isAfterLast();
         curseur.close();
-        return favori_existe;
+        return favoriExiste;
     }
 
     /**
@@ -67,10 +68,10 @@ public class AccesLocal {
      * Récupère les indices des formations favorites.
      * @return les indices des formations favorites.
      */
-    public ArrayList<Integer> getFavorisId() {
+    public List<Integer> getFavorisId() {
         bd = accesBD.getReadableDatabase();
         String req = "select * from FormationsFavorites";
-        ArrayList<Integer> favoris = new ArrayList<Integer>();
+        List<Integer> favoris = new ArrayList<>();
         Cursor curseur = bd.rawQuery(req, null);
         curseur.moveToFirst();
 

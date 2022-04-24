@@ -13,8 +13,8 @@ import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 import com.example.mediatek86formations.modele.Formation;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Classe FormationsActivity. Vue correspondant à l'affichage des formations.
@@ -61,7 +61,7 @@ public class FormationsActivity extends AppCompatActivity {
      * Création de la liste adapter.
      */
     private void creerListe(){
-        ArrayList<Formation> lesFormations = controle.getLesFormations();
+        List<Formation> lesFormations = controle.getLesFormations();
         if(lesFormations != null){
             Collections.sort(lesFormations, Collections.<Formation>reverseOrder());
             ListView listView = (ListView)findViewById(R.id.lstFormations);
@@ -75,20 +75,18 @@ public class FormationsActivity extends AppCompatActivity {
      * Si elle ne l'est pas actualise la liste des formations affichées.
      */
     private void ecouteFiltrer() {
-        btnFiltrer.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String txt = txtFiltre.getText().toString();
-                if(txt.length() > 0) {
-                    controle.setLesFormations(controle.getLesFormationFiltre(txt));
+        btnFiltrer.setOnClickListener(view ->  {
+            String txt = txtFiltre.getText().toString();
+            if(txt.length() > 0) {
+                controle.setLesFormations(controle.getLesFormationFiltre(txt));
+            } else {
+                if(!controle.getFavori()) {
+                    controle.setLesFormations(controle.getLesFormationsCopie());
                 } else {
-                    if(!controle.getFavori()) {
-                        controle.setLesFormations(controle.getLesFormationsCopie());
-                    } else {
-                        controle.setLesFormations(controle.getLesFormationsFavorites());
-                    }
+                    controle.setLesFormations(controle.getLesFormationsFavorites());
                 }
-                creerListe();
             }
+            creerListe();
         });
     }
 }

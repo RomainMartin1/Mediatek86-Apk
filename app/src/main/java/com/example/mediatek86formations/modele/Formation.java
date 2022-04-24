@@ -8,7 +8,7 @@ import java.util.Date;
  * Classe représentant la base de données Formation.
  * @author Romain
  */
-public class Formation implements Comparable {
+public class Formation implements Comparable<Formation> {
     /**
      * Entier. Indice de la Formation.
      */
@@ -123,8 +123,7 @@ public class Formation implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        return publishedAt.compareTo(((Formation)o).getPublishedAt());
+    public int compareTo(Formation formation) {
+        return publishedAt.compareTo(formation.getPublishedAt());
     }
-
 }

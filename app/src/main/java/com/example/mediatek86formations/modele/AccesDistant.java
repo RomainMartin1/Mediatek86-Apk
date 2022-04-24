@@ -81,9 +81,11 @@ public class AccesDistant implements AsyncResponse {
         AccesREST accesDonnees = new AccesREST();
         accesDonnees.delegate = this;
         String requesMethod = null;
-        switch (operation){
-            case "tous" : requesMethod="GET"; break;
+
+        if(operation.equals("tous")) {
+            requesMethod="GET";
         }
+
         if (requesMethod != null) {
             accesDonnees.setRequestMethod(requesMethod);
             accesDonnees.addParam("formation");

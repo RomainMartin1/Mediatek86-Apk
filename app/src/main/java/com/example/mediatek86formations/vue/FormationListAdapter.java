@@ -12,7 +12,7 @@ import com.example.mediatek86formations.*;
 import com.example.mediatek86formations.controleur.Controle;
 import com.example.mediatek86formations.modele.Formation;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Vue correspondant à l'affichage de la liste des Formations.
@@ -21,7 +21,7 @@ public class FormationListAdapter extends BaseAdapter {
     /**
      * Tableau de Formation.
      */
-    private ArrayList<Formation> lesFormations;
+    private List<Formation> lesFormations;
     private LayoutInflater inflater;
     /**
      * Contrôleur.
@@ -37,7 +37,7 @@ public class FormationListAdapter extends BaseAdapter {
      * @param lesFormations tableau de Formation.
      * @param context contexte.
      */
-    public FormationListAdapter(ArrayList<Formation> lesFormations, Context context) {
+    public FormationListAdapter(List<Formation> lesFormations, Context context) {
         this.lesFormations = lesFormations;
         this.controle = Controle.getInstance(context);
         this.context = context;
@@ -105,51 +105,35 @@ public class FormationListAdapter extends BaseAdapter {
         //Gestion du clic sur le bouton favori
         if(!controle.getFavori()) {
             viewProperties.btnListFavori.setTag(i);
-            viewProperties.btnListFavori.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = (int) v.getTag();
-                    if (controle.isFavori(lesFormations.get(position).getId())) {
-                        viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
-                        controle.removeFavori(lesFormations.get(position).getId());
-                        notifyDataSetChanged();
-                    } else {
-                        viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
-                        controle.addFavori(lesFormations.get(position));
-                        notifyDataSetChanged();
-                    }
+            viewProperties.btnListFavori.setOnClickListener(view1 ->  {
+                int position = (int) view1.getTag();
+                if (controle.isFavori(lesFormations.get(position).getId())) {
+                    viewProperties.btnListFavori.setImageResource(R.drawable.coeur_gris);
+                    controle.removeFavori(lesFormations.get(position).getId());
+                    notifyDataSetChanged();
+                } else {
+                    viewProperties.btnListFavori.setImageResource(R.drawable.coeur_rouge);
+                    controle.addFavori(lesFormations.get(position));
+                    notifyDataSetChanged();
                 }
             });
         } else {
             viewProperties.btnListFavori.setTag(i);
-            viewProperties.btnListFavori.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = (int) v.getTag();
-                    controle.removeFavori(lesFormations.get(position).getId());
-                    lesFormations.remove(lesFormations.get(position));
-                    controle.setLesFormationsFavorites(controle.getFavoris());
-                    notifyDataSetChanged();
-                }
+            viewProperties.btnListFavori.setOnClickListener(view1 ->  {
+                int position = (int) view1.getTag();
+                controle.removeFavori(lesFormations.get(position).getId());
+                lesFormations.remove(lesFormations.get(position));
+                controle.setLesFormationsFavorites(controle.getFavoris());
+                notifyDataSetChanged();
             });
         }
 
         viewProperties.txtListeTitle.setText(lesFormations.get(i).getTitle());
         viewProperties.txtListPublishedAt.setText(lesFormations.get(i).getPublishedAtToString());
         viewProperties.txtListeTitle.setTag(i);
-        viewProperties.txtListeTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ouvrirUneFormationActivity(v);
-            }
-        });
+        viewProperties.txtListeTitle.setOnClickListener(this::ouvrirUneFormationActivity);
         viewProperties.txtListPublishedAt.setTag(i);
-        viewProperties.txtListPublishedAt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ouvrirUneFormationActivity(v);
-            }
-        });
+        viewProperties.txtListPublishedAt.setOnClickListener(this::ouvrirUneFormationActivity);
         return view;
     }
 
